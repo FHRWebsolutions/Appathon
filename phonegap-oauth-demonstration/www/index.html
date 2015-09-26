@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+		
+        <div class="app">
+            <h1>PhoneGap</h1>
+            <div id="deviceready" class="blink">
+                <p class="event listening">Connecting to Device</p>
+                <p class="event received">Device is Ready</p>
+				<div id="login">
+				  <a>Sign In With Google!</a>
+				  <p></p>
+				</div>
+				<div id="debugdiv">Debugdiv</div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+			var googleapi = {
+				authorize: function(options) {
+					var deferred = $.Deferred();
+					//deferred.reject({ error: 'Not Implemented' });
+					document.getElementById("debugdiv").innerHTML="Authorization started";
+					
+					var authUrl = 'https://accounts.google.com/o/oauth2/auth?' + $.param({
+						client_id: options.client_id,
+						redirect_uri: options.redirect_uri,
+						response_type: 'code',
+						scope: options.scope
+					});
+					var authWindow = window.open(authUrl, '_blank', 'location=no,toolbar=no');
+					$(authWindow).on('loadstart', function(e) {
+						var url = e.originalEvent.url;
+						var code = /\?code=(.+)$/.exec(url);
+						var error = /\?error=(.+)$/.exec(url);
+
+						if (code || error) {
+							authWindow.close();
+						}
+
+						if (code) {
+						  $.post('https://accounts.google.com/o/oauth2/token', {
+							code: code[1],
+							client_id: options.client_id,
+							client_secret: options.client_secret,
+							redirect_uri: options.redirect_uri,
+							grant_type: 'authorization_code'
+						  }).done(function(data) {
+							document.getElementById("debugdiv").innerHTML="Authorization SUCCESSFUL";
+							deferred.resolve(data);
+						  }).fail(function(response) {
+							document.getElementById("debugdiv").innerHTML="Authorization FAILED";
+							deferred.reject(response.responseJSON);
+						  });
+						} else if (error) {
+						  document.getElementById("debugdiv").innerHTML="Authorization ERROR";
+						  deferred.reject({
+							error: error[1]
+						  });
+						}
+					});
+					return deferred.promise();
+				}
+			};
+
+			$(document).on('deviceready', function() {
+			  var $loginButton = $('#login a');
+			  var $loginStatus = $('#login p');
+			  document.getElementById("debugdiv").innerHTML="This debug thing works";
+
+			  $loginButton.on('click', function() {
+			    //$loginStatus.html('Clicked!');
+				googleapi.authorize({
+				  client_id: '93844829410-t7r9v9rlcguvktqhba6d4h8d1igbcp9l.apps.googleusercontent.com',
+				  //client_secret: 'YOUR CLIENT SECRET HERE',
+				  //redirect_uri: 'urn:ietf:wg:oauth:2.0:oob',
+				  redirect_uri: 'http://localhost',
+				  scope: 'openid https://www.googleapis.com/auth/userinfo.profile'
+				}).done(function(data) {
+				  $loginStatus.html('Access Token: ' + data.access_token);
+				  
+				  $.get('https://www.googleapis.com/oauth2/v1/userinfo', {
+					access_token: data.access_token
+				  }).done(function(data) {
+					document.getElementById("debugdiv").innerHTML="REQUEST SUCCESSFUL"+JSON.stringify(data);
+				  }).fail(function(response) {
+					document.getElementById("debugdiv").innerHTML="REQUEST FAILED"+JSON.stringify(response);
+				  });
+				}).fail(function(data) {
+				  $loginStatus.html(data.error);
+				});
+			  });
+			});
+			
+
+        </script>
+    </body>
+</html>
