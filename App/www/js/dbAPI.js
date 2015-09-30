@@ -3,25 +3,31 @@ var dbAPI = (function() {
 	//var access_token = 'b1e3f6f4db98e5799ca7433f33c1f5'; //1 - Hans März
 	//dbAPI.setToken('b1e3f6f4db98e5799ca7433f33c1f5'); //1 - Hans März
 	
-	var access_token = '942c2593237ae6d5daddeed781fa3658';
+	//var access_token = '942c2593237ae6d5daddeed781fa3658';
+	var access_token = localStorage.ecat_access_token;
 	
-	if(localStorage.ecat != null) {
-		creation_timestamp = localStorage.ecat.creation_timestamp;
-		tempToken = localStorage.ecat.access_token;
-		duration = localStorage.ecat.expires_in;
-		
-		if(creation_timestamp+duration*1000 < Date.now()) {
-			//Access token expired
-			authenticator.refresh_token();
-			.done(function(data){
-				callback(true, data, null);
-			});
-			access_token = localStorage.ecat.access_token;
-		} else {
-			//Access token should still be valid
-			access_token = tempToken;
-		}
-	}
+	//alert("THIS IS dbAPI file");
+	//if(localStorage.ecat_access_token != null) {
+	//	alert("The local storage is not null");
+	//	creation_timestamp = localStorage.ecat.creation_timestamp;
+	//	tempToken = localStorage.ecat.access_token;
+	//	duration = localStorage.ecat.expires_in;
+	//	
+	//	if(creation_timestamp+duration*1000 < Date.now()) {
+	//		//Access token expired
+	//		authenticator.refresh_token();
+	//		.done(function(data){
+	//			callback(true, data, null);
+	//		});
+	//		access_token = localStorage.ecat_access_token;
+	//	} else {
+	//		//Access token should still be valid
+	//		access_token = tempToken;
+	//	}
+	//} else {
+	//	alert("The local storage is empty");
+	//}
+	//alert("Still alive X");
 	
 	var apiURI = "https://thebankapi.com:8443/api/0.1.0";
 	var getRequest = function(url) {
