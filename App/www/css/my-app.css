@@ -31,6 +31,98 @@ Blue: #193296
 	color:#193296;
 }
 
+/* Contacts */
+.page-contacts .page-content{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 125px;
+    padding-bottom: 50px;
+}
+.current-account{
+	height:70px;
+	margin-top:44px;
+	position:relative;
+	background:#efeff4;
+	padding-top:10px;
+	z-index:100;
+	box-sizing:border-box;
+	-box-shadow:0 0 5px #efeff4;
+	border-bottom:1px solid #193296;
+}
+.current-account div{
+	width:90%;
+	height:50px;
+	-border:1px solid #193296;
+	border-radius:5px;
+	margin:0 auto;
+	position:relative;
+	padding:0 10px;
+	box-sizing:border-box;
+}
+.current-account-name{
+	color:#555;
+	font-size:20px;
+	line-height:50px;
+}
+.current-account-balance{
+	color:#193296;
+	font-weight:300;
+	font-size:20px;
+	position:absolute;
+	right:10px;
+	line-height:50px;
+}
+.page-contacts ul{
+	margin:0;
+	padding:0;
+}
+.page-contacts ul li{
+	list-style:none;
+	height:60px;
+	position:relative;
+}
+.page-contacts ul li a{
+	display:block;
+}
+.page-contacts ul li a:after{
+	content: "\f3d1";
+    position: absolute;
+    right: 15px;
+	top:0;
+    font-family: "Ionicons";
+    font-size: 26px;
+    z-index: 2;
+	line-height:60px;
+}
+.page-contacts ul li .contact-img{
+	width:80px;
+	text-align:center;
+	float:left;
+}
+.page-contacts ul li .contact-img i{
+	font-size: 35px;
+    line-height: 50px;
+    -background: #193296;
+	background:#D9E4F5;
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    border-radius: 50%;
+}
+.page-contacts ul li .contact-img img{
+	height:50px;
+	width:50px;
+	border-radius:50%;
+	margin-top:5px;
+}
+.page-contacts ul li .contact-name{
+	line-height:60px;
+	font-size:20px;
+}
+
+
 /* Unsorted */
 .icon{
 	font-size:30px;
