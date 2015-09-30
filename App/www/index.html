@@ -29,7 +29,7 @@
             <div id="ViewContacts" class="view tab view-main active">
                 <div class="navbar">
                     <div class="navbar-inner">
-                        <div class="left"><a href="sites/debug.html" class="link icon-only"><i class="icon ion-bug"></i></a></div>
+                        <div class="left"><a id="token-refresh" href="#" class="link icon-only"><i style="color:#193296;" class="icon ion-bug"></i></a></div>
                         <div class="center sliding">Contacts</div>
                         <div class="right"><a href="sites/addcontact.html" class="link icon-only"><i class="icon ion-ios-plus-empty"></i></a></div>
                     </div>
@@ -44,13 +44,13 @@
                         </div>
                         <div class="page-content">
                             <ul class="contact-list">
-                            	<!--<li>
+                            	<li>
                                 	<a href="sites/transfer-draft.html" data-context='{"name":"Max Mustermann","iban": "DE0000000000000000001","bic":"XXXXXXXXXXXX","mail": "max@mustermann.de"}'>
                                         <span class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></span>
                                         <span class="contact-name">Max Mustermann</span>
                                     </a>
                             	</li>
-                            	<li>
+                            	<!--<li>
                                 	<a href="sites/transfer-draft.html">
                                         <span class="contact-img"><i class="icon ion-android-person"></i></span>
                                         <span class="contact-name">Max Mustermann</span>
@@ -99,26 +99,7 @@
                                     </a>
                             	</li>-->
                             </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Scan QR -->
-            <div id="ViewScanQR" class="view tab">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="left"></div>
-                        <div class="center sliding">Scan QR Code</div>
-                        <div class="right"></div>
-                    </div>
-                </div>
-                <div class="pages navbar-through toolbar-through">
-                    <div data-page="qrcode" class="page">
-                        <div class="page-content">
-                            
-                            <!-- QR Content -->
-                            
+                            <!--<span id="asdf">asdf</span>-->
                         </div>
                     </div>
                 </div>
@@ -147,25 +128,28 @@
             <!-- Bottom Toolbar-->
             <div class="toolbar tabbar tabbar-labels">
                 <div class="toolbar-inner">
-                    <a href="#ViewContacts" class="back tab-link active">
+                    <a href="#ViewContacts" class="tab-link active">
                         <i class="icon ion-ios-people"></i>
             			<span class="tabbar-label">Contacts</span>
                     </a>
-                    <a href="#ViewScanQR" class="back tab-link">
-                        <i class="icon ion-ios-barcode-outline"></i>
-            			<span class="tabbar-label">Scan QR Code</span>
-                    </a>
-                    <a href="#ViewShare" class="back tab-link">
+                    <a href="#" class="back tab-link"></a>
+                    <a href="#ViewShare" class="tab-link">
                         <i class="icon ion-share"></i>
             			<span class="tabbar-label">Share</span>
+                    </a>
+                    <a href="#" id="scan-qr" class="">
+                        <i class="icon ion-ios-barcode-outline"></i>
                     </a>
                 </div>
             </div>
         </div> 
+		<script type="text/javascript" src="js/authenticator.js"></script>
         <!-- dbAPI -->
 		<script type="text/javascript" src="js/dbAPI.js"></script>
         <!-- Path to Framework7 Library JS-->
         <script type="text/javascript" src="js/framework7.min.js"></script>
+        <!-- Barcode Scanner Plugin -->
+        <script type="text/javascript" src="js/barcodescanner.js"></script>
         <!-- Path to your app js-->
         <script type="text/javascript" src="js/my-app.js"></script>
         <!-- Cordova integration -->

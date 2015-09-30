@@ -12,20 +12,13 @@ var ViewContacts = myApp.addView('#ViewContacts', {
     dynamicNavbar: true
 });
 
-var ViewScanQR = myApp.addView('#ViewScanQR', {
-    dynamicNavbar: true
-});
-
 var ViewShare = myApp.addView('#ViewShare', {
     dynamicNavbar: true
 });
 
 $$('#ViewContacts').on('show', function () {
 	loadContacts();
-});
-
-$$('#ViewScanQR').on('show', function () {
-	//qr load scanner
+	alert("test");
 });
 
 loadContacts();
@@ -35,16 +28,24 @@ $$(document).on('pageBeforeAnimation', function (e) {
 	var page = e.detail.page;
 	if (page.name === 'gastro') {
 		var contactId=$$(page.container).find('.whatever').data("contact-id");
-		var gastroData='{"iban": "DE0000000000000000000","bic":"XXXXXXXXXXXX","mail": "test@test.de"}';
-		gastroData = jQuery.parseJSON(gastroData);
+		var contactData='{"iban": "DE0000000000000000000","bic":"XXXXXXXXXXXX","mail": "test@test.de"}';
+		contactData = jQuery.parseJSON(contactData);
 	}
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	
+	/*$("#asdf").click(function() {
+        //startScan();
+		alert("test");
+    });*/
 }
+$("#token-refresh").click(function() {
+        authenticator.refresh_token().done(function(){
+			//maybe optional
+		});
+    });
 
 function loadContacts(){
 	dbAPI.contacts.getAll(function(sucess, data, error){
@@ -66,4 +67,18 @@ function loadContacts(){
 			$("#ViewContacts ul").append(li);
 		});
 	});
+}
+
+function startScan() {
+	alert("start scan");
+	cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			//alert(JSON.stringify(result.text)+" | "+result.format+" | "+result.cancelled+" | "+result.text);
+			var obj=jQuery.parseJSON(result.text);
+			alert(obj.iban);
+		}, 
+		function (error) {
+			alert("Scanning failed: " + error);
+		}
+	);
 }

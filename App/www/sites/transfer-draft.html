@@ -9,7 +9,7 @@
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Your app title -->
-        <title>Youmih</title>
+        <title>Transfer</title>
         <!-- Path to Framework7 iOS CSS theme styles-->
         <link rel="stylesheet" href="css/framework7.ios.min.css">
         <!-- Path to Framework7 iOS related color styles -->
@@ -27,27 +27,6 @@
         <div class="panel-complete-background"></div>
         <!-- Status bar overlay for full screen mode (PhoneGap) -->
         <div class="statusbar-overlay"></div>
-        <!-- Panels overlay-->
-        <div class="panel-overlay"></div>
-        <!-- Left panel with reveal effect-->
-        <div class="panel panel-left panel-reveal">
-            <ul class="dashboard_top_menu">
-                <li>
-                    <i class="icon ion-ios-person"></i>
-                    Mein Profil
-                </li>
-                <li>
-                    <i class="icon ion-ios-gear"></i>
-                    Einstellungen
-                </li>
-            </ul>
-            <ul class="dashboard_bottom_menu">
-                <li>
-                    <i class="icon ion-power"></i>
-                    Logout
-                </li>
-            </ul> 
-        </div>
         <!-- Views -->
         <div class="views tabs">
             <!-- Newsfeed View -->
@@ -66,11 +45,11 @@
                     <div data-page="transferdraft" class="page no-tabbar">
                         <div class="page-content">
 							<div class="visitenkarte">
-                            	<span class="label">Name:</span><span id="contact-to">{{name}}</span>
-                            	<span class="label">IBAN:</span><span id="contact-iban">{{iban}}</span>
-                            	<span class="label">BIC</span><span id="contact-bic">{{bic}}</span>
+                            	<label>Name:</label><span id="contact-to">{{name}}</span><br class="clear">
+                            	<label>IBAN:</label><span id="contact-iban">{{iban}}</span><br class="clear">
+                            	<label>BIC</label><span id="contact-bic">{{bic}}</span>
                             </div>
-                        </div>
+                    	</div>
                     </div>
                 </div>
             </div>

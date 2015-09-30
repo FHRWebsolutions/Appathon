@@ -34,6 +34,24 @@ Blue: #193296
 	font-size:13px !important;
 	margin-top:-2px !important;
 }
+#scan-qr{
+	position: absolute;
+    left: 50%;
+    width: 80px;
+    background: #193296;
+    border-radius: 50%;
+    height: 80px;
+    bottom: -15px;
+    margin-left: -35px;
+    z-index: 999;
+    border: 5px solid #f7f7f8;
+	text-align: center;
+}
+#scan-qr i{
+	font-size: 45px;
+    color: #FFF;
+    margin-top: 7px;
+}
 
 /* Contacts */
 .page-contacts .page-content{
@@ -58,7 +76,6 @@ Blue: #193296
 .current-account div{
 	width:90%;
 	height:50px;
-	-border:1px solid #193296;
 	border-radius:5px;
 	margin:0 auto;
 	position:relative;
@@ -128,15 +145,25 @@ Blue: #193296
 
 /* transfer draft */
 .visitenkarte{
-	
+	width:90%;
+	border-radius:5px;
+	margin:0 auto;
+	position:relative;
+	padding:0 10px;
+	box-sizing:border-box;
 }
-.visitenkarte .label{
+.visitenkarte label{
 	display:block;
 	width:100px;
 	float:left;
 }
-.visitenkarte .value{
-	
+.visitenkarte span{
+	display:block;
+}
+.visitenkarte span#contact-iban,
+.visitenkarte span#contact-bic{
+	display:block;
+	font-size:10px;
 }
 
 /* Unsorted */
@@ -148,4 +175,7 @@ Blue: #193296
 }
 .clear{
 	clear:both;
+}
+.tabbar.toolbar-hidden{
+	display:none;
 }

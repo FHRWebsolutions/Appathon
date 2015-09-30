@@ -37,6 +37,7 @@
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
+  <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
   <icon src="icon.png"/>
   <access origin="*"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>
