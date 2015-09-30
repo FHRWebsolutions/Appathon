@@ -30,6 +30,10 @@ Blue: #193296
 .tab-link.active i.icon{
 	color:#193296;
 }
+.tabbar-label{
+	font-size:13px !important;
+	margin-top:-2px !important;
+}
 
 /* Contacts */
 .page-contacts .page-content{
