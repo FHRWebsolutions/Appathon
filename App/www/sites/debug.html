@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Your app title -->
+        <title>Youmih</title>
+        <!-- Path to Framework7 iOS CSS theme styles-->
+        <link rel="stylesheet" href="css/framework7.ios.min.css">
+        <!-- Path to Framework7 iOS related color styles -->
+        <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+        <!-- Path to Icon Font -->
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <!-- Path to your custom app styles-->
+        <link rel="stylesheet" href="css/my-app.css">
+        <!-- Adding Google Maps -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+    </head>
+  	<body>
+    	<!-- Background for Panel -->
+        <div class="panel-complete-background"></div>
+        <!-- Status bar overlay for full screen mode (PhoneGap) -->
+        <div class="statusbar-overlay"></div>
+        <!-- Panels overlay-->
+        <div class="panel-overlay"></div>
+        <!-- Left panel with reveal effect-->
+        <div class="panel panel-left panel-reveal">
+            <ul class="dashboard_top_menu">
+                <li>
+                    <i class="icon ion-ios-person"></i>
+                    Mein Profil
+                </li>
+                <li>
+                    <i class="icon ion-ios-gear"></i>
+                    Einstellungen
+                </li>
+            </ul>
+            <ul class="dashboard_bottom_menu">
+                <li>
+                    <i class="icon ion-power"></i>
+                    Logout
+                </li>
+            </ul> 
+        </div>
+        <!-- Views -->
+        <div class="views tabs">
+            <!-- Newsfeed View -->
+            <div id="ViewContacts" class="view tab view-main active">
+            
+                <!-- Top Navbar-->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"><a href="#" class="link icon-only back"><i class="icon ion-ios-arrow-back"></i></a></div>
+                        <div class="center sliding">Debug</div>
+                    </div>
+                </div>
+                <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+                <div class="pages navbar-through toolbar-through">
+                    <!-- Page, "data-page" contains page name -->
+                    <div data-page="transferdraft" class="page no-tabbar">
+                        <div class="page-content">
+							
+                            
+                            <!-- Hier kannst du dich austoben -->
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Toolbar-->
+            <div class="toolbar tabbar">
+                <div class="toolbar-inner">
+                    <a href="#ViewNewsfeed" class="tab-link active">
+                        <i class="icon ion-android-globe">
+                            <span class="badge bg-red">2</span>
+                        </i>
+                    </a>
+                    <a href="#ViewLocation" class="tab-link">
+                        <i class="icon ion-ios-location"></i>
+                    </a>
+                    <a href="#ViewCategory" class="tab-link">
+                        <i class="icon ion-filing"></i>
+                    </a>
+                </div>
+            </div>
+        </div> 
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="js/framework7.min.js"></script>
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="js/my-app.js"></script>
+        <!-- Cordova integration -->
+        <script type="text/javascript" src="cordova.js"></script>
+  	</body>
+</html>

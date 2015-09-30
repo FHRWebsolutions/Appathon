@@ -126,6 +126,18 @@ Blue: #193296
 	font-size:20px;
 }
 
+/* transfer draft */
+.visitenkarte{
+	
+}
+.visitenkarte .label{
+	display:block;
+	width:100px;
+	float:left;
+}
+.visitenkarte .value{
+	
+}
 
 /* Unsorted */
 .icon{

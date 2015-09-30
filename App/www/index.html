@@ -29,7 +29,7 @@
             <div id="ViewContacts" class="view tab view-main active">
                 <div class="navbar">
                     <div class="navbar-inner">
-                        <div class="left"></div>
+                        <div class="left"><a href="sites/debug.html" class="link icon-only"><i class="icon ion-bug"></i></a></div>
                         <div class="center sliding">Contacts</div>
                         <div class="right"><a href="sites/addcontact.html" class="link icon-only"><i class="icon ion-ios-plus-empty"></i></a></div>
                     </div>
@@ -44,8 +44,8 @@
                         </div>
                         <div class="page-content">
                             <ul class="contact-list">
-                            	<li>
-                                	<a href="sites/transfer-draft.html">
+                            	<!--<li>
+                                	<a href="sites/transfer-draft.html" data-context='{"name":"Max Mustermann","iban": "DE0000000000000000001","bic":"XXXXXXXXXXXX","mail": "max@mustermann.de"}'>
                                         <span class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></span>
                                         <span class="contact-name">Max Mustermann</span>
                                     </a>
@@ -63,7 +63,7 @@
                                     </a>
                             	</li>
                             	<li>
-                                	<a href="sites/transfer-draft.html">
+                                	<a href="sites/transfer-draft.html" data-context='{"name":"Giro Sparkasse","iban": "DE0000000000000000002","bic":"XXXXXXXXXXXX","mail": "max@mustermann.de"}'>
                                         <span class="contact-img"><i class="icon ion-card"></i></span>
                                         <span class="contact-name">Giro Sparkasse</span>
                                     </a>
@@ -97,7 +97,7 @@
                                         <span class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></span>
                                         <span class="contact-name">Max Mustermann1</span>
                                     </a>
-                            	</li>
+                            	</li>-->
                             </ul>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="pages navbar-through toolbar-through">
-                    <div data-page="contacts" class="page">
+                    <div data-page="qrcode" class="page">
                         <div class="page-content">
                             
                             <!-- QR Content -->
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="pages navbar-through toolbar-through">
-                    <div data-page="contacts" class="page">
+                    <div data-page="share" class="page">
                         <div class="page-content">
                             
                             <!-- Share Content -->
@@ -162,6 +162,8 @@
                 </div>
             </div>
         </div> 
+        <!-- dbAPI -->
+		<script type="text/javascript" src="js/dbAPI.js"></script>
         <!-- Path to Framework7 Library JS-->
         <script type="text/javascript" src="js/framework7.min.js"></script>
         <!-- Path to your app js-->

@@ -20,9 +20,15 @@ var ViewShare = myApp.addView('#ViewShare', {
     dynamicNavbar: true
 });
 
+$$('#ViewContacts').on('show', function () {
+	loadContacts();
+});
+
 $$('#ViewScanQR').on('show', function () {
 	//qr load scanner
 });
+
+loadContacts();
 
 // In page events:
 $$(document).on('pageBeforeAnimation', function (e) {
@@ -37,5 +43,27 @@ $$(document).on('pageBeforeAnimation', function (e) {
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	//alert('device ready');
+	
+}
+
+function loadContacts(){
+	dbAPI.contacts.getAll(function(sucess, data, error){
+		
+		// Loop Contacts
+		$.each( data.items, function( id, contact ) {
+			
+			// Create Contact List Item
+			var li=null;
+			li=$('<li></li>');
+			li.append('<a></a>');
+			li.find("a")
+			.attr("href","sites/transfer-draft.html")
+			.attr("data-context",JSON.stringify(contact))
+			.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
+			.append('<span class="contact-name">'+contact.name+'</span>');
+			
+			// Append Contact to list
+			$("#ViewContacts ul").append(li);
+		});
+	});
 }
