@@ -1,0 +1,43 @@
+/* Color Codes
+Blue: #193296
+*/
+
+/* Statusbar */
+.statusbar-overlay{
+	background:#193296;
+	-webkit-transition: 400ms;
+    transition: 400ms;
+}
+
+/* Navbar */
+.navbar{
+	background:#193296;
+	text-align:center;
+}
+.navbar,
+ .navbar a{
+	color:#fff;
+}
+.navbar:after{
+	-height:0;
+}
+
+/* Tab bar */
+.tab-link i.icon{
+	line-height:30px;
+	height:auto;
+}
+.tab-link.active i.icon{
+	color:#193296;
+}
+
+/* Unsorted */
+.icon{
+	font-size:30px;
+}
+.page-content a{
+	color:#193296;
+}
+.clear{
+	clear:both;
+}

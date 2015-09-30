@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Your app title -->
+        <title>Appathon</title>
+        <!-- Path to Framework7 iOS CSS theme styles-->
+        <link rel="stylesheet" href="css/framework7.ios.min.css">
+        <!-- Path to Framework7 iOS related color styles -->
+        <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+        <!-- Path to Icon Font -->
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <!-- Path to your custom app styles-->
+        <link rel="stylesheet" href="css/my-app.css">
+        <!-- Adding Google Maps -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+    </head>
+  	<body>
+        <div class="statusbar-overlay"></div>       
+        
+        <div class="views tabs">
+            
+            <!-- Contacts -->
+            <div id="ViewContacts" class="view tab view-main active">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"></div>
+                        <div class="center sliding">Contacts</div>
+                        <div class="right"><a href="#" class="link icon-only"><i class="icon ion-ios-plus-empty"></i></a></div>
+                    </div>
+                </div>
+                <div class="pages navbar-through toolbar-through">
+                    <div data-page="contacts" class="page">
+                        <div class="currentAcc">
+                            <span>Default Account</span>
+                            <span class="bal">1.234,56€</span>
+                        </div>
+                        <div class="page-content">
+                            <ul class="contact-list">
+                            	<a href="sites/transfer-draft.html">
+                                	<li>
+                                        <span class="contact-img"><img src="" alt=""></span>
+                                        <span class="contect-name">Max Mustermann</span>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scan QR -->
+            <div id="ViewScanQR" class="view tab">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"></div>
+                        <div class="center sliding">Scan QR Code</div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="pages navbar-through toolbar-through">
+                    <div data-page="contacts" class="page">
+                        <div class="page-content">
+                            
+                            <!-- QR Content -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Share -->
+            <div id="ViewShare" class="view tab">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"></div>
+                        <div class="center sliding">Share Account</div>
+                        <div class="right"></div>
+                    </div>
+                </div>
+                <div class="pages navbar-through toolbar-through">
+                    <div data-page="contacts" class="page">
+                        <div class="page-content">
+                            
+                            <!-- Share Content -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Toolbar-->
+            <div class="toolbar tabbar tabbar-labels">
+                <div class="toolbar-inner">
+                    <a href="#ViewContacts" class="back tab-link active">
+                        <i class="icon ion-ios-people"></i>
+            			<span class="tabbar-label">Contacts</span>
+                    </a>
+                    <a href="#ViewScanQR" class="back tab-link">
+                        <i class="icon ion-ios-barcode-outline"></i>
+            			<span class="tabbar-label">Scan QR Code</span>
+                    </a>
+                    <a href="#ViewShare" class="back tab-link">
+                        <i class="icon ion-share"></i>
+            			<span class="tabbar-label">Share</span>
+                    </a>
+                </div>
+            </div>
+        </div> 
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="js/framework7.min.js"></script>
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="js/my-app.js"></script>
+        <!-- Cordova integration -->
+        <script type="text/javascript" src="cordova.js"></script>
+  	</body>
+</html>
