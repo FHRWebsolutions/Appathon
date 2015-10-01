@@ -42,9 +42,7 @@ function onDeviceReady() {
     });*/
 }
 $("#token-refresh").click(function() {
-        authenticator.refresh_token().done(function(){
-			//maybe optional
-		});
+        dbAPI.refresh_token();
     });
 
 function loadContacts(){

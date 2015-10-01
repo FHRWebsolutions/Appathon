@@ -41,7 +41,7 @@ Blue: #193296
     background: #193296;
     border-radius: 50%;
     height: 80px;
-    bottom: -15px;
+    bottom: 0;
     margin-left: -35px;
     z-index: 999;
     border: 5px solid #f7f7f8;
@@ -145,12 +145,6 @@ Blue: #193296
 
 /* transfer draft */
 .visitenkarte{
-	width:90%;
-	border-radius:5px;
-	margin:0 auto;
-	position:relative;
-	padding:0 10px;
-	box-sizing:border-box;
 }
 .visitenkarte label{
 	display:block;
@@ -159,11 +153,62 @@ Blue: #193296
 }
 .visitenkarte span{
 	display:block;
+	line-height:20px;
 }
 .visitenkarte span#contact-iban,
 .visitenkarte span#contact-bic{
 	display:block;
 	font-size:10px;
+}
+.amount-buttons{
+	margin-bottom:10px;
+}
+.amount-select{
+	width:25%;
+	float:left;
+	text-align:center;
+}
+.amount-select button{
+	background:#193296;
+	width:70px;
+	height:40px;
+	-border-radius:50%;
+	border:3px solid #f7f7f8;
+	color:#fff;
+	font-size:18px;
+	padding:0;
+	font-weight:300;
+}
+.amount-select button:active{
+	-webkit-transform:scale(1.1);
+	transform:scale(1.1);
+}
+.amount-input{
+	position: relative;
+    width: 200px;
+    margin: 60px auto 10px;
+}
+.amount-input div{
+	
+}
+.amount-input input{
+	font-size: 20px;
+    padding: 5px 25px 5px 0;
+    width: 100%;
+    text-align: right;
+    height: 40px;
+    box-sizing: border-box;
+}
+.amount-input label{
+	position: absolute;
+    line-height: 40px;
+    right: 9px;
+    top: 0;
+    color: #777;
+    font-size: 20px;
+}
+.amount-input button{
+	
 }
 
 /* Unsorted */
@@ -178,4 +223,16 @@ Blue: #193296
 }
 .tabbar.toolbar-hidden{
 	display:none;
+}
+.content-block-title{
+	margin:20px 15px 10px
+}
+.content-block{
+	margin:35px 0 0;
+}
+.button-big{
+	border-color:#193296;
+}
+.button.active{
+	background:#193296;
 }
