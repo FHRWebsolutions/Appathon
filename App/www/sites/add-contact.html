@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Your app title -->
+        <title>Transfer</title>
+        <!-- Path to Framework7 iOS CSS theme styles-->
+        <link rel="stylesheet" href="css/framework7.ios.min.css">
+        <!-- Path to Framework7 iOS related color styles -->
+        <link rel="stylesheet" href="css/framework7.ios.colors.min.css">
+        <!-- Path to Icon Font -->
+        <link rel="stylesheet" href="css/ionicons.min.css">
+        <!-- Path to your custom app styles-->
+        <link rel="stylesheet" href="css/my-app.css">
+        <!-- Adding Google Maps -->
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+    </head>
+  	<body>
+    	<!-- Background for Panel -->
+        <div class="panel-complete-background"></div>
+        <!-- Status bar overlay for full screen mode (PhoneGap) -->
+        <div class="statusbar-overlay"></div>
+        <!-- Views -->
+        <div class="views tabs">
+            <!-- Newsfeed View -->
+            <div id="ViewContacts" class="view tab view-main active">
+            
+                <!-- Top Navbar-->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left"><a href="#" class="link icon-only back"><i class="icon ion-ios-arrow-back"></i></a></div>
+                        <div class="center sliding">Transfer Money</div>
+                    </div>
+                </div>
+                <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+                <div class="pages navbar-through toolbar-through">
+                    <!-- Page, "data-page" contains page name -->
+                    <div data-page="addcontact" class="page no-tabbar">
+                        <div class="page-content">
+                        	
+                        	<div class="content-block-title">Add Contact</div>
+                            <div class="content-block inset">
+                                <div class="content-block-inner share-screen add-contact">
+                                    <div class="input-label">Name:</div>
+                                    <div class="add-contact-input"><input type="text" id="contact-name" value="{{name}}"></div>
+                                    <div class="input-label">IBAN:</div>
+                                    <div class="add-contact-input"><input type="text" id="contact-iban" value="{{iban}}"></div>
+                                    <div class="input-label">BIC:</div>
+                                    <div class="add-contact-input"><input type="text" id="contact-bic" value="{{bic}}"></div>
+                                    <div class="input-label">E-Mail:</div>
+                                    <div class="add-contact-input"><input type="text" id="contact-mail" value="{{mail}}"></div>
+                                    <br class="clear">
+                            	</div>
+                            </div>
+                            <div class="content-block inset">
+                                <div class="content-block-inner">
+                                	<div class="row">
+                                        <div class="col-50">
+                                            <a id="add-contact-reset" href="#" class="button button-big">Reset</a>
+                                        </div>
+                                        <div class="col-50">
+                                            <a id="transfer-submit" href="#" class="button button-big active">Save</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="js/framework7.min.js"></script>
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="js/my-app.js"></script>
+        <!-- Cordova integration -->
+        <script type="text/javascript" src="cordova.js"></script>
+  	</body>
+</html>

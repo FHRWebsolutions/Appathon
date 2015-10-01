@@ -49,23 +49,32 @@ $$(document).on('pageBeforeAnimation', function (e) {
 		$$(page.container).find(".amount-select").click(function() {
 			$$(page.container).find("#amount").val((parseFloat($$(page.container).find("#amount").val())+parseInt($(this).find("button").attr("data-value"))).toFixed(2));
 		});
-		
+	}
+	if (page.name === 'addcontact') {
+		$$(page.container).find("#add-contact-reset").click(function() {
+			$$(page.container).find("#contact-name").val("");
+			$$(page.container).find("#contact-iban").val("");
+			$$(page.container).find("#contact-bic").val("");
+			$$(page.container).find("#contact-mail").val("");
+		});
 	}
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	/*$("#asdf").click(function() {
-        //startScan();
-		alert("test");
-    });*/
-}
-	
-	
 
+}
+$("#scan-qr").click(function() {
+        //startScan();
+		alert("scanning");
+		openNewContact('{"name": "Sebastian Seltmann","email": "sebastian@seltmann.com","nameOfAccountOwner": "Sebastian Seltmann","iban": "DE1234567890123456","bic": "ABXXXXXX"}');
+});
 function loadContacts(){
 	dbAPI.contacts.getAll(function(sucess, data, error){
+		
+		//Clear Contact list
+		$("#ViewContacts ul").html("");
 		
 		// Loop Contacts
 		$.each( data.items, function( id, contact ) {
@@ -91,17 +100,34 @@ function startScan() {
 		function (result) {
 			//alert(JSON.stringify(result.text)+" | "+result.format+" | "+result.cancelled+" | "+result.text);
 			var obj=jQuery.parseJSON(result.text);
-			//alert(obj.iban);
-			dbAPI.contacts.post(result.text, function(success,data,err){
-				if(success){
-					alert("Contact "+obj.name+" Saved");
-				} else {
-					alert("Failure");
-				};
-			});
+			openNewContact('{"name": "Sebastian Seltmann","email": "sebastian@seltmann.com","nameOfAccountOwner": "Sebastian Seltmann","iban": "DE1234567890123456","bic": "ABXXXXXX"}');
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
 		}
 	);
 }
+
+function openNewContact(data){
+	var obj=jQuery.parseJSON(data);
+	myApp.getCurrentView().router.load({
+		url: "sites/add-contact.html",
+		context: {
+			name: obj.name,
+			iban: obj.iban,
+			bic: obj.bic,
+			mail: obj.email,
+		}
+	});
+}
+
+/* Add contact
+
+dbAPI.contacts.post(result.text, function(success,data,err){
+	if(success){
+		alert("Contact "+obj.name+" Saved");
+	} else {
+		alert("Failure");
+	};
+});
+*/
