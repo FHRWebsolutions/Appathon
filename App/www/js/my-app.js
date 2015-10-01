@@ -46,6 +46,9 @@ $$(document).on('pageBeforeAnimation', function (e) {
 		$$(page.container).find("#purpose").change(function() {
 			$$(page.container).find("#purpose-confirmation").text($$(page.container).find("#purpose").val());
 		});
+		$$(page.container).find(".amount-select").click(function() {
+			$$(page.container).find("#amount").val((parseFloat($$(page.container).find("#amount").val())+parseInt($(this).find("button").attr("data-value"))).toFixed(2));
+		});
 		
 	}
 });
