@@ -31,7 +31,7 @@ var dbAPI = (function() {
 	
 	var loggingIn = false;
 	
-	var refresh_token = function() {
+	var refresh_token_int = function() {
 		var deferred = $.Deferred();
 		if (!loggingIn) {
 			logginIn = true;
@@ -44,11 +44,9 @@ var dbAPI = (function() {
 			});
 			
 			// open new window
-			alert("will open account now");
 			ref = window.open(authUrl,'_blank', 'location=no');
 			
 			ref.addEventListener('loadstop', function(event) {
-				alert("LOADSTOP REACHED");
 				// check if we try to load our callback url
 				if(event.url.indexOf(redirect_uri) === 0) {
 				
@@ -167,7 +165,13 @@ var dbAPI = (function() {
 		},
 		setToken: function(token) {
 			access_token = token;
+		},
+		refresh_token: function(){
+			refresh_token_int().done(function(){
+				//maybe optional
+			});
 		}
+			
 	};
 	return dbAPI; 
 })();
