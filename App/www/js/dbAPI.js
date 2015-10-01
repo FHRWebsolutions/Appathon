@@ -57,7 +57,7 @@ var dbAPI = (function() {
 			}
 		});
 		return deferred.promise();
-	}
+	};
 	var postRequest = function(url, data) {
 		var deferred = $.Deferred();
 		$.ajax({
@@ -79,8 +79,29 @@ var dbAPI = (function() {
 			}
 		});
 		return deferred.promise();
-		
-	}
+	};
+	var deleteRequest = function(url, data) {
+		var deferred = $.Deferred();
+		$.ajax({
+			url: url,
+			type: 'DELETE',
+			//dataType: 'json',
+			//data: JSON.stringify(data),  
+            dataType: 'JSON',
+			data: JSON.stringify(data),
+			headers: {
+				'Authorization': 'Bearer '+access_token,
+				'Content-Type':'application/json'
+			},
+			success: function(data) {
+				deferred.resolve(data);
+			},
+			error: function(response) {
+				deferred.reject(response.responseJSON);
+			}
+		});
+		return deferred.promise();
+	};
 	dbAPI = {
 		contacts: {
 			getAll:function(callback) {
@@ -94,7 +115,14 @@ var dbAPI = (function() {
 				.fail(function(response) {callback(false, null, response);})
 			},
 			post: function(contactdata, callback){
+				
+				console.log("request launched");
 				postRequest(apiURI+"/contacts/",contactdata)
+				.done(function(data) 	 {callback(true, data, null);})
+				.fail(function(response) {callback(false, null, response);})
+			},
+			delete: function(contactid, callback){
+				deleteRequest(apiURI+"/contacts/",contactid)
 				.done(function(data) 	 {callback(true, data, null);})
 				.fail(function(response) {callback(false, null, response);})
 			}
@@ -112,6 +140,13 @@ var dbAPI = (function() {
 			getAll:function(callback){
 				getRequest(apiURI+ "/cashAccounts")
 				.done(function(data) 	 {callback(true, data, null);})
+				.fail(function(response) {callback(false, null, response);})
+			}
+		},
+		external:{
+			getProfilePic:function(callback){
+				getRequest("http://uifaces.com/api/v1/random")
+				.done(function(data) 	 {callback(true, data.image_urls.normal.bigger, null);})
 				.fail(function(response) {callback(false, null, response);})
 			}
 		},
@@ -134,15 +169,15 @@ var dbAPI = (function() {
 				});
 				
 				// open new window
-				alert("Will open window now:"+authUrl);
+				//alert("Will open window now:"+authUrl);
 				ref = window.open(authUrl,'_blank', 'location=yes,clearsessioncache=yes');
 				//ref = window.inAppBrowserXwalk.open(url,'_blank', 'location=no');
 				
 				ref.addEventListener('loadstop', function(event) {
-					alert("Loadstop fired");
-					//alert(event);
-					alert(event.url);
-					alert(Object.keys(event));
+					//alert("Loadstop fired");
+					////alert(event);
+					//alert(event.url);
+					//alert(Object.keys(event));
 					// check if we try to load our callback url
 					if(event.url.indexOf(redirect_uri) === 0) {
 					
@@ -183,5 +218,22 @@ var dbAPI = (function() {
 		}
 			
 	};
+	
+	//var contactdata = {
+	//	name: "bob",
+	//	nameOfAccountOwner: "bob",
+	//	iban: "DE88700700240823300999",
+	//	bic: "DABAIE2D",
+	//};
+	//console.log("Still alive");
+	//dbAPI.contacts.post(contactdata, function(succ,data,err){
+	//	if(succ){
+	//		console.log("success");
+	//		console.log(data);
+	//	}else{
+	//		console.log("fail");
+	//		console.log(err);
+	//	}
+	//});
 	return dbAPI; 
 })();
