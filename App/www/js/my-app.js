@@ -20,6 +20,7 @@ var ViewShare = myApp.addView('#ViewShare', {
 
 $$('#ViewContacts').on('show', function () {
 	loadContacts();
+	loadCashAccount();
 });
 $$('#ViewShare').on('show', function () {
 	
@@ -84,17 +85,22 @@ $$(document).on('pageBeforeAnimation', function (e) {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-
+	
 }
-
+loadCashAccount();
 $("#scan-qr").click(function() {
         startScan();
 		//alert("scanning");
 		//openNewContact(fakeContactData);
 });
+$("#clear-data").click(function() {
+	$(".current-account-name").html("Girokonto Fritz");
+	$(".current-account-balance").html("532,65 €");
+	$("#ViewContacts ul").html("");
+});
 
 function loadContacts(){
-	dbAPI.contacts.getAll(function(sucess, data, error){
+	dbAPI.contacts.getAll(function(success, data, error){
 		
 		//Clear Contact list
 		$("#ViewContacts ul").html("");
@@ -147,7 +153,7 @@ function openNewContact(data){
 }
 
 function saveContact(data){
-	alert(data);
+	//alert(data);
 	var obj=jQuery.parseJSON(data);
 	dbAPI.contacts.post(obj, function(success,data,err){
 		if(success){
@@ -157,6 +163,16 @@ function saveContact(data){
 			loadContacts();
 		} else {
 			alert("Failure"+err);
+		}
+	});
+}
+
+function loadCashAccount(){
+	dbAPI.cashAccounts.getAll(function(success, data, error){
+		if(success){
+			$(".current-account-name").text(data.items[0].nameOfAccount);
+			$(".current-account-balance").text((data.items[0].balance).toFixed(2)+" €");
+			//alert(data.items[0].nameOfAccount+(data.items[0].balance).toFixed(2));
 		}
 	});
 }
