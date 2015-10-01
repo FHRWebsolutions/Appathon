@@ -44,29 +44,71 @@
                     <!-- Page, "data-page" contains page name -->
                     <div data-page="transferdraft" class="page no-tabbar">
                         <div class="page-content">
-							<div class="visitenkarte">
-                            	<label>Name:</label><span id="contact-to">{{name}}</span><br class="clear">
-                            	<label>IBAN:</label><span id="contact-iban">{{iban}}</span><br class="clear">
-                            	<label>BIC</label><span id="contact-bic">{{bic}}</span>
+                        	
+                        	<div class="content-block-title">Transfer to</div>
+                            <div class="content-block inset visitenkarte">
+                                <div class="content-block-inner">
+                                	<label>Name:</label><span id="contact-to">{{name}}</span>
+                                    <label>IBAN:</label><span id="contact-iban">{{iban}}</span>
+                                    <label>BIC</label><span id="contact-bic">{{bic}}</span>
+                                </div>
                             </div>
+                        	<div class="content-block-title editable">Transfer Details</div>
+                            <div class="content-block inset editable">
+                                <div class="content-block-inner">
+                                	<div class="amount-buttons">
+                                        <div class="amount-select"><button data-value="5">5&nbsp;€</button></div>
+                                        <div class="amount-select"><button data-value="10">10€</button></div>
+                                        <div class="amount-select"><button data-value="20">20&nbsp;€</button></div>
+                                        <div class="amount-select"><button data-value="50">50&nbsp;€</button></div>
+                                    </div>
+                                    <div class="input-label">Amount:</div>
+                                    <div class="amount-input">
+                                        <input type="number" inputmode="numeric" id="amount" value="0.00">
+                                        <label for="amount">€</label>
+                                    </div>
+                                    <div class="input-label">Purpose:</div>
+                                    <div class="purpose-input">
+                                        <input type="text" id="purpose" value="Default Transfer">
+                                    </div>
+                                    <br class="clear">
+                                </div>
+                            </div>
+                            <div class="content-block inset editable">
+                                <div class="content-block-inner">
+                                	<div class="row">
+                                        <div class="col-50">
+                                            <a id="amount-reset" href="#" class="button button-big">Reset</a>
+                                        </div>
+                                        <div class="col-50">
+                                            <a id="transfer-submit" href="#" class="button button-big active">Submit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- confirm Dialog -->
+                        	<div class="content-block-title confirmation">Transfer Details</div>
+                            <div class="content-block inset confirmation">
+                                <div class="content-block-inner">
+                                    <div class="confirmation-label">Amount: <span id="amount-confirmation">0,00 €</span></div>
+                                    <div class="confirmation-label">Purpose: <span id="purpose-confirmation">Default Transfer</span></div>
+                                </div>
+                            </div>
+                            <div class="content-block inset confirmation">
+                                <div class="content-block-inner">
+                                	<div class="row">
+                                        <div class="col-50">
+                                            <a id="transfer-edit" href="#" class="button button-big">Edit</a>
+                                        </div>
+                                        <div class="col-50">
+                                            <a id="transfer-transfer" href="#" class="button button-big active">Transfer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                     	</div>
                     </div>
-                </div>
-            </div>
-            <!-- Bottom Toolbar-->
-            <div class="toolbar tabbar">
-                <div class="toolbar-inner">
-                    <a href="#ViewNewsfeed" class="tab-link active">
-                        <i class="icon ion-android-globe">
-                            <span class="badge bg-red">2</span>
-                        </i>
-                    </a>
-                    <a href="#ViewLocation" class="tab-link">
-                        <i class="icon ion-ios-location"></i>
-                    </a>
-                    <a href="#ViewCategory" class="tab-link">
-                        <i class="icon ion-filing"></i>
-                    </a>
                 </div>
             </div>
         </div> 

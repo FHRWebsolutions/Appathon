@@ -18,7 +18,6 @@ var ViewShare = myApp.addView('#ViewShare', {
 
 $$('#ViewContacts').on('show', function () {
 	loadContacts();
-	alert("test");
 });
 
 loadContacts();
@@ -26,10 +25,28 @@ loadContacts();
 // In page events:
 $$(document).on('pageBeforeAnimation', function (e) {
 	var page = e.detail.page;
-	if (page.name === 'gastro') {
-		var contactId=$$(page.container).find('.whatever').data("contact-id");
-		var contactData='{"iban": "DE0000000000000000000","bic":"XXXXXXXXXXXX","mail": "test@test.de"}';
-		contactData = jQuery.parseJSON(contactData);
+	if (page.name === 'transferdraft') {
+		$$(page.container).find("#amount-reset").click(function() {
+			$$(page.container).find("#amount").val("0.00");
+			$$(page.container).find("#purpose").val("Default Transfer");
+			$$(page.container).find("#amount-confirmation").text("0.00 €");
+			$$(page.container).find("#purpose-confirmation").text("Default Transfer");
+		});
+		$$(page.container).find("#transfer-submit").click(function() {
+			$$(page.container).find(".editable").hide();
+			$$(page.container).find(".confirmation").show();
+		});
+		$$(page.container).find("#transfer-edit").click(function() {
+			$$(page.container).find(".confirmation").hide();
+			$$(page.container).find(".editable").show();
+		});
+		$$(page.container).find("#amount").change(function() {
+			$$(page.container).find("#amount-confirmation").text($$(page.container).find("#amount").val()+" €");
+		});
+		$$(page.container).find("#purpose").change(function() {
+			$$(page.container).find("#purpose-confirmation").text($$(page.container).find("#purpose").val());
+		});
+		
 	}
 });
 
@@ -41,9 +58,8 @@ function onDeviceReady() {
 		alert("test");
     });*/
 }
-$("#token-refresh").click(function() {
-        dbAPI.refresh_token();
-    });
+	
+	
 
 function loadContacts(){
 	dbAPI.contacts.getAll(function(sucess, data, error){
@@ -68,12 +84,18 @@ function loadContacts(){
 }
 
 function startScan() {
-	alert("start scan");
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
 			//alert(JSON.stringify(result.text)+" | "+result.format+" | "+result.cancelled+" | "+result.text);
 			var obj=jQuery.parseJSON(result.text);
-			alert(obj.iban);
+			//alert(obj.iban);
+			dbAPI.contacts.post(result.text, function(success,data,err){
+				if(success){
+					alert("Contact "+obj.name+" Saved");
+				} else {
+					alert("Failure");
+				};
+			});
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);

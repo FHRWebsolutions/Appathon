@@ -99,7 +99,6 @@
                                     </a>
                             	</li>-->
                             </ul>
-                            <!--<span id="asdf">asdf</span>-->
                         </div>
                     </div>
                 </div>
@@ -118,7 +117,18 @@
                     <div data-page="share" class="page">
                         <div class="page-content">
                             
-                            <!-- Share Content -->
+                        	<div class="content-block-title">Share my Contact Details</div>
+                            <div class="content-block inset">
+                                <div class="content-block-inner share-screen visitenkarte">
+                                	<label>Name:</label><span id="contact-to">{{name}}</span>
+                                    <label>IBAN:</label><span id="contact-iban">{{iban}}</span>
+                                    <label>BIC</label><span id="contact-bic">{{bic}}</span>
+                                    <br>
+                                	<img src="img/own-qr-code.png" alt="QR Code">
+                                	<a href="#" class="button">Share via ...</a>
+                                    <!--<button onclick="window.plugins.socialsharing.share('Message only')">message only IBAN ...</button>-->
+                                </div>
+                            </div>
                             
                         </div>
                     </div>
