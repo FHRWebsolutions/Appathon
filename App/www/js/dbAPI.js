@@ -1,7 +1,7 @@
 var dbAPI = (function() {
 	//var access_token = 'ca8cc066843b29c86e4fb08054d4ef91';
-	//var access_token = 'b1e3f6f4db98e5799ca7433f33c1f5'; //1 - Hans März
-	//dbAPI.setToken('b1e3f6f4db98e5799ca7433f33c1f5'); //1 - Hans März
+	//var access_token = 'b1e3f6f4db98e5799ca7433f33c1f5'; //1 - Hans MÃ¤rz
+	//dbAPI.setToken('b1e3f6f4db98e5799ca7433f33c1f5'); //1 - Hans MÃ¤rz
 	
 	//var access_token = '942c2593237ae6d5daddeed781fa3658';
 	

@@ -1,3 +1,5 @@
+var fakeContactData='{"name": "Fritz Ahorn","email": "fritz@ahorn.com","nameOfAccountOwner": "Fritz Ahorn","iban": "DE88700700240823300900","bic": "DEUTDEDBMUC"}';
+
 // Initialize your app
 var myApp = new Framework7({
 	scrollTopOnStatusbarClick: true,
@@ -18,6 +20,9 @@ var ViewShare = myApp.addView('#ViewShare', {
 
 $$('#ViewContacts').on('show', function () {
 	loadContacts();
+});
+$$('#ViewShare').on('show', function () {
+	
 });
 
 loadContacts();
@@ -48,6 +53,10 @@ $$(document).on('pageBeforeAnimation', function (e) {
 		});
 		$$(page.container).find(".amount-select").click(function() {
 			$$(page.container).find("#amount").val((parseFloat($$(page.container).find("#amount").val())+parseInt($(this).find("button").attr("data-value"))).toFixed(2));
+			$$(page.container).find("#amount-confirmation").text($$(page.container).find("#amount").val()+" €");
+		});
+		$("#purpose").click(function () {
+			$(this).select();
 		});
 	}
 	if (page.name === 'addcontact') {
@@ -55,21 +64,35 @@ $$(document).on('pageBeforeAnimation', function (e) {
 			$$(page.container).find("#contact-name").val("");
 			$$(page.container).find("#contact-iban").val("");
 			$$(page.container).find("#contact-bic").val("");
-			$$(page.container).find("#contact-mail").val("");
+			$$(page.container).find("#contact-email").val("");
+		});
+		var savecontact=true;
+		$$(page.container).find("#add-contact-save").click(function() {
+			if(savecontact){
+				//savecontact=false;
+				var contact = new Object();
+				contact.name = $$(page.container).find("#contact-name").val();
+				contact.email = $$(page.container).find("#contact-email").val();
+				contact.nameOfAccountOwner = $$(page.container).find("#contact-name").val();
+				contact.iban = $$(page.container).find("#contact-iban").val();
+				contact.bic = $$(page.container).find("#contact-bic").val();
+				saveContact(JSON.stringify(contact));
+			}
 		});
 	}
 });
 
 document.addEventListener("deviceready", onDeviceReady, false);
-
 function onDeviceReady() {
 
 }
+
 $("#scan-qr").click(function() {
-        //startScan();
-		alert("scanning");
-		openNewContact('{"name": "Sebastian Seltmann","email": "sebastian@seltmann.com","nameOfAccountOwner": "Sebastian Seltmann","iban": "DE1234567890123456","bic": "ABXXXXXX"}');
+        startScan();
+		//alert("scanning");
+		//openNewContact(fakeContactData);
 });
+
 function loadContacts(){
 	dbAPI.contacts.getAll(function(sucess, data, error){
 		
@@ -82,12 +105,14 @@ function loadContacts(){
 			// Create Contact List Item
 			var li=null;
 			li=$('<li></li>');
+			//li.addClass('swipeout');
 			li.append('<a></a>');
-			li.find("a")
+			li.find("a").addClass('swipeout-content')
 			.attr("href","sites/transfer-draft.html")
 			.attr("data-context",JSON.stringify(contact))
 			.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
 			.append('<span class="contact-name">'+contact.name+'</span>');
+			li.append('<div class="swipeout-actions-left"><a href="#" class="delete" data-id="'+contact.id+'">Delete</a></div>');
 			
 			// Append Contact to list
 			$("#ViewContacts ul").append(li);
@@ -99,8 +124,8 @@ function startScan() {
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
 			//alert(JSON.stringify(result.text)+" | "+result.format+" | "+result.cancelled+" | "+result.text);
-			var obj=jQuery.parseJSON(result.text);
-			openNewContact('{"name": "Sebastian Seltmann","email": "sebastian@seltmann.com","nameOfAccountOwner": "Sebastian Seltmann","iban": "DE1234567890123456","bic": "ABXXXXXX"}');
+			//var obj=jQuery.parseJSON(result.text);
+			openNewContact(result.text);
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
@@ -116,18 +141,22 @@ function openNewContact(data){
 			name: obj.name,
 			iban: obj.iban,
 			bic: obj.bic,
-			mail: obj.email,
+			email: obj.email,
 		}
 	});
 }
 
-/* Add contact
-
-dbAPI.contacts.post(result.text, function(success,data,err){
-	if(success){
-		alert("Contact "+obj.name+" Saved");
-	} else {
-		alert("Failure");
-	};
-});
-*/
+function saveContact(data){
+	alert(data);
+	var obj=jQuery.parseJSON(data);
+	dbAPI.contacts.post(obj, function(success,data,err){
+		if(success){
+			alert(obj.name+" saved");
+			$("#add-contact-reset").click();
+			ViewContacts.router.back();
+			loadContacts();
+		} else {
+			alert("Failure"+err);
+		}
+	});
+}

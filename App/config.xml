@@ -1,7 +1,7 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.appathon.app" version="0.0.1">
-  <name>Appathon</name>
-  <description>Appathon</description>
-  <author href="" email="tim.friedrich@db.com">Appathon</author>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.appathon.eCAT" version="0.0.1">
+  <name>eCAT</name>
+  <description>eCAT</description>
+  <author href="" email="tim.friedrich@db.com">eCAT</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
@@ -18,7 +18,7 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="7"/>
   <preference name="android-installLocation" value="auto"/>
-  <preference name="SplashScreenDelay" value="1000" />
+  <preference name="SplashScreenDelay" value="1" />
   <gap:plugin name="org.apache.cordova.battery-status"/>
   <gap:plugin name="org.apache.cordova.camera"/>
   <gap:plugin name="org.apache.cordova.media-capture"/>
@@ -39,6 +39,13 @@
   <gap:plugin name="org.apache.cordova.vibration"/>
   <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
   <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+  
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait.png" gap:platform="ios" width="320" height="480"/>
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios" width="640" height="960"/>
+  <gap:splash src="www/res/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios" width="640" height="1136"/>
+  <gap:splash src="www/res/screen/ios/screen-ipad-portrait.png" gap:platform="ios" width="768" height="1024"/>
+  <gap:splash src="www/res/screen/ios/screen-ipad-landscape.png" gap:platform="ios" width="1024" height="768"/>
+  
   <icon src="icon.png"/>
   <access origin="*"/>
   <plugin name="cordova-plugin-whitelist" version="1"/>

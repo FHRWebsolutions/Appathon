@@ -42,7 +42,7 @@ Blue: #193296
     border-radius: 50%;
     height: 80px;
     bottom: 0;
-    margin-left: -35px;
+    margin-left: -40px;
     z-index: 999;
     border: 5px solid #f7f7f8;
 	text-align: center;
@@ -253,6 +253,26 @@ Blue: #193296
 .share-screen img{
 	margin-bottom:20px;
 	width:70%;
+}
+.visitenkarte-share label{
+	display: block;
+    line-height: 20px;
+    text-align: left;
+    font-size: 12px !important;
+	width:80px;
+	margin-left:10px;
+}
+.visitenkarte-share span{
+	display: block;
+    line-height: 20px;
+    text-align: left;
+    font-size: 12px !important;
+}
+.share-with-button{
+	width: 70%;
+    margin: 10px auto 10px;
+    height: 50px;
+    line-height: 50px;
 }
 
 /* Unsorted */

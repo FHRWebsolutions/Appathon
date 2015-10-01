@@ -8,6 +8,7 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>-->
         <!-- Your app title -->
         <title>Appathon</title>
         <!-- Path to Framework7 iOS CSS theme styles-->
@@ -18,7 +19,6 @@
         <link rel="stylesheet" href="css/ionicons.min.css">
         <!-- Path to your custom app styles-->
         <link rel="stylesheet" href="css/my-app.css">
-        <!-- Adding Google Maps -->
     </head>
   	<body>
         <div class="statusbar-overlay"></div>       
@@ -43,12 +43,26 @@
                             </div>
                         </div>
                         <div class="page-content">
-                            <ul class="contact-list">
-                            	<!--<li>
-                                	<a href="sites/transfer-draft.html" data-context='{"name":"Max Mustermann","iban": "DE0000000000000000001","bic":"XXXXXXXXXXXX","mail": "max@mustermann.de"}'>
-                                        <span class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></span>
-                                        <span class="contact-name">Max Mustermann</span>
-                                    </a>
+                            <ul class="contact-list list-block">
+                                <!--<li class="swipeout">
+                                  <a class="swipeout-content">
+                                    <div class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></div>
+                                    <div class="contact-name">Max Mustermann</div>
+                                  </a>
+                                  <div class="swipeout-actions-left">
+                                    <a href="#" class="delete" data-id="123">Delete</a>
+                                  </div>
+                                </li>
+                            	<li>
+                                	<div class="swipeout-content item-content">
+                                        <a href="sites/transfer-draft.html" data-context='{"name":"Max Mustermann","iban": "DE0000000000000000001","bic":"XXXXXXXXXXXX","mail": "max@mustermann.de"}'>
+                                            <span class="contact-img"><img src="img/i-f7-ios.png" alt="Profil"></span>
+                                            <span class="contact-name">Max Mustermann</span>
+                                        </a>
+                                    </div>
+                                    <div class="swipeout-actions-left">
+                                    	<a href="#" class="action1">Action 1</a>
+                                	</div>
                             	</li>
                             	<li>
                                 	<a href="sites/transfer-draft.html">
@@ -116,20 +130,17 @@
                 <div class="pages navbar-through toolbar-through">
                     <div data-page="share" class="page">
                         <div class="page-content">
-                            
                         	<div class="content-block-title">Share my Contact Details</div>
                             <div class="content-block inset">
-                                <div class="content-block-inner share-screen visitenkarte">
-                                	<label>Name:</label><span id="contact-to">{{name}}</span>
-                                    <label>IBAN:</label><span id="contact-iban">{{iban}}</span>
-                                    <label>BIC</label><span id="contact-bic">{{bic}}</span>
-                                    <br>
+                                <div class="content-block-inner share-screen visitenkarte visitenkarte-share">
+                                	<label>Name:</label><span id="contact-to">Fritz Ahorn</span>
+                                    <label>IBAN:</label><span id="contact-iban">DE88700700240823300900</span>
+                                    <label>BIC</label><span id="contact-bic">DEUTDEDBMUC</span>
+                                    <label>E-Mail</label><span id="contact-email">fritz@ahorn.com</span>
+                                	<a href="#" class="button share-with-button active" onclick="window.plugins.socialsharing.share('DE000000000000000')">Share via ...</a>
                                 	<img src="img/own-qr-code.png" alt="QR Code">
-                                	<a href="#" class="button" onclick="window.plugins.socialsharing.share('DE000000000000000')">Share via ...</a>
-                                    <!--<button class="button" onclick="window.plugins.socialsharing.share('DE000000000000000')">Share via ...</button>-->
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
