@@ -160,7 +160,9 @@ function loadContacts(){
 function startScan() {
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
-			openNewContact(result.text);
+			if(!result.cancelled){
+				openNewContact(result.text);
+			}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);

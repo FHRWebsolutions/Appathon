@@ -52,6 +52,11 @@ Blue: #193296
 .navbar:after{
 	-height:0;
 }
+.navbar .right a:active i:before,
+.navbar .left a:active i:before{
+	-webkit-transform:scale(1.1);
+	transform:scale(1.1);
+}
 
 /* Tab bar */
 .tab-link i.icon{
@@ -64,6 +69,10 @@ Blue: #193296
 .tabbar-label{
 	font-size:13px !important;
 	margin-top:-2px !important;
+}
+.tabbar a:active i:before{
+	-webkit-transform:scale(1.1);
+	transform:scale(1.1);
 }
 #scan-qr{
 	position: absolute;
@@ -333,4 +342,8 @@ Blue: #193296
 }
 .button.active{
 	background:#193296;
+}
+.button:active{
+	-webkit-transform:scale(0.9);
+	transform:scale(0.9);
 }
