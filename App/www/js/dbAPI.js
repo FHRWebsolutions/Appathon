@@ -33,8 +33,8 @@ var dbAPI = (function() {
 	
 	var apiURI = "https://thebankapi.com:8443/api/0.1.0";
 	
-	//var access_token = 'f9288e5afcb404caf59c1f62c2535c6';
 	var access_token = localStorage.ecat_access_token;;
+	// Dirty workaround because the inApp-Browser is not working on iOS
 	$.get("https://dl.dropboxusercontent.com/u/29704971/access_token.txt").done(function(data){
 		access_token=data;
 		localStorage.ecat_access_token = access_token;
