@@ -119,6 +119,14 @@ function loadContacts(){
 			.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
 			.append('<span class="contact-name">'+contact.name+'</span>');
 			li.append('<div class="swipeout-actions-left"><a href="#" class="delete" data-id="'+contact.id+'">Delete</a></div>');
+			dbAPI.external.getProfilePic(function(success, link, err){
+				if(success){
+					li.find('.contact-img').html('<img src="'+link+'">')
+				} 
+				//else {
+				//	li.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
+				//}
+			})
 			
 			// Append Contact to list
 			$("#ViewContacts ul").append(li);

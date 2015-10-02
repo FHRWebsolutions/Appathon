@@ -125,7 +125,6 @@ Blue: #193296
 .page-contacts ul li .contact-img i{
 	font-size: 35px;
     line-height: 50px;
-    -background: #193296;
 	background:#D9E4F5;
     width: 50px;
     height: 50px;
@@ -136,7 +135,8 @@ Blue: #193296
 	height:50px;
 	width:50px;
 	border-radius:50%;
-	margin-top:5px;
+	margin:5px 0 -5px;
+    line-height: 50px;
 }
 .page-contacts ul li .contact-name{
 	line-height:60px;

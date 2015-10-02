@@ -145,9 +145,26 @@ var dbAPI = (function() {
 		},
 		external:{
 			getProfilePic:function(callback){
-				getRequest("http://uifaces.com/api/v1/random")
-				.done(function(data) 	 {callback(true, data.image_urls.normal.bigger, null);})
-				.fail(function(response) {callback(false, null, response);})
+			var url = "http://uifaces.com/api/v1/random";
+			var deferred = $.Deferred();
+			$.ajax({
+				url: url,
+				type: 'GET',
+				dataType: 'json',
+				//beforeSend: function(xhr) {
+				//	xhr.setRequestHeader('Authorization', 'Bearer '+access_token);
+				//},
+				success: function(data) {
+					deferred.resolve(data);
+					console.log(data);
+				},
+				error: function(response) {
+					deferred.reject(response.responseJSON);
+				}
+			});
+			deferred.promise()
+			.done(function(data) 	 {callback(true, data.image_urls.bigger, null);})
+			.fail(function(response) {callback(false, null, response);})
 			}
 		},
 		setToken: function(token) {
