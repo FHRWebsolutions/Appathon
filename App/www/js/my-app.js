@@ -34,17 +34,19 @@ $$(document).on('pageBeforeAnimation', function (e) {
 	if (page.name === 'transferdraft') {
 		$$(page.container).find("#amount-reset").click(function() {
 			$$(page.container).find("#amount").val("0.00");
-			$$(page.container).find("#purpose").val("Default Transfer");
+			$$(page.container).find("#purpose").val("Sent by eCAT");
 			$$(page.container).find("#amount-confirmation").text("0.00 €");
-			$$(page.container).find("#purpose-confirmation").text("Default Transfer");
+			$$(page.container).find("#purpose-confirmation").text("Sent by eCAT");
 		});
 		$$(page.container).find("#transfer-submit").click(function() {
 			$$(page.container).find(".editable").hide();
 			$$(page.container).find(".confirmation").show();
+			$(".navbar .center").text("Confirm Details");
 		});
 		$$(page.container).find("#transfer-edit").click(function() {
 			$$(page.container).find(".confirmation").hide();
 			$$(page.container).find(".editable").show();
+			$(".navbar .center").text("Transfer Money");
 		});
 		$$(page.container).find("#amount").change(function() {
 			$$(page.container).find("#amount-confirmation").text($$(page.container).find("#amount").val()+" €");
@@ -56,11 +58,38 @@ $$(document).on('pageBeforeAnimation', function (e) {
 			$$(page.container).find("#amount").val((parseFloat($$(page.container).find("#amount").val())+parseInt($(this).find("button").attr("data-value"))).toFixed(2));
 			$$(page.container).find("#amount-confirmation").text($$(page.container).find("#amount").val()+" €");
 		});
-		$("#purpose").click(function () {
-			$(this).select();
+		$$(page.container).find("#purpose").focus(function() {
+			if($$(page.container).find("#purpose").val()==="Sent by eCAT"){
+				$$(page.container).find("#purpose").val("");
+			}
+		}).blur(function(){
+			if($$(page.container).find("#purpose").val()===""){
+				$$(page.container).find("#purpose").val("Sent by eCAT");
+			}
+		});
+		$$(page.container).find("#add-contact-reset").click(function() {
+			$$(page.container).find("#contact-name").val("");
+			$$(page.container).find("#contact-iban").val("");
+			$$(page.container).find("#contact-bic").val("");
+			$$(page.container).find("#contact-email").val("");
+		});
+		var sendtransaction=true;
+		$("#transfer-transfer").click(function() {
+			if(sendtransaction){
+				var transaction = new Object();
+				transaction.amount = $$(page.container).find("#amount").val();
+				transaction.iban = $$(page.container).find("#contact-iban").text();
+				transaction.name = $$(page.container).find("#contact-to").text();
+				transaction.currency = "EUR";
+				sendTransaction(transaction);
+			}
 		});
 	}
 	if (page.name === 'addcontact') {
+		/*if($$(page.container).find("#contact-name").attr("data-noreset")=="1"){
+			$$(page.container).find(".resetbtn").hide();
+			$$(page.container).find(".savebtn").removeClass("col-50").addClass("col-100");
+		}*/
 		$$(page.container).find("#add-contact-reset").click(function() {
 			$$(page.container).find("#contact-name").val("");
 			$$(page.container).find("#contact-iban").val("");
@@ -70,14 +99,14 @@ $$(document).on('pageBeforeAnimation', function (e) {
 		var savecontact=true;
 		$$(page.container).find("#add-contact-save").click(function() {
 			if(savecontact){
-				//savecontact=false;
+				savecontact=false;
 				var contact = new Object();
 				contact.name = $$(page.container).find("#contact-name").val();
 				contact.email = $$(page.container).find("#contact-email").val();
 				contact.nameOfAccountOwner = $$(page.container).find("#contact-name").val();
 				contact.iban = $$(page.container).find("#contact-iban").val();
 				contact.bic = $$(page.container).find("#contact-bic").val();
-				saveContact(JSON.stringify(contact));
+				saveContact(contact);
 			}
 		});
 	}
@@ -90,14 +119,16 @@ function onDeviceReady() {
 loadCashAccount();
 $("#scan-qr").click(function() {
         startScan();
-		//alert("scanning");
-		//openNewContact(fakeContactData);
 });
 $("#clear-data").click(function() {
 	$(".current-account-name").html("Girokonto Fritz");
 	$(".current-account-balance").html("532,65 €");
 	$("#ViewContacts ul").html("");
 });
+$("#dialog-close").click(function() {
+	$(".overlay").hide();
+});
+
 
 function loadContacts(){
 	dbAPI.contacts.getAll(function(success, data, error){
@@ -119,14 +150,6 @@ function loadContacts(){
 			.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
 			.append('<span class="contact-name">'+contact.name+'</span>');
 			li.append('<div class="swipeout-actions-left"><a href="#" class="delete" data-id="'+contact.id+'">Delete</a></div>');
-			dbAPI.external.getProfilePic(function(success, link, err){
-				if(success){
-					li.find('.contact-img').html('<img src="'+link+'">')
-				} 
-				//else {
-				//	li.append('<span class="contact-img"><i class="icon ion-android-person"></i></span>')
-				//}
-			})
 			
 			// Append Contact to list
 			$("#ViewContacts ul").append(li);
@@ -137,8 +160,6 @@ function loadContacts(){
 function startScan() {
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
-			//alert(JSON.stringify(result.text)+" | "+result.format+" | "+result.cancelled+" | "+result.text);
-			//var obj=jQuery.parseJSON(result.text);
 			openNewContact(result.text);
 		}, 
 		function (error) {
@@ -156,16 +177,26 @@ function openNewContact(data){
 			iban: obj.iban,
 			bic: obj.bic,
 			email: obj.email,
+			noreset: 1
+		}
+	});
+}
+
+function loadCashAccount(){
+	dbAPI.cashAccounts.getAll(function(success, data, error){
+		if(success){
+			$(".current-account-id").text(data.items[0].id);
+			$(".current-account-name").text(data.items[0].nameOfAccount);
+			$(".current-account-balance").text((data.items[0].balance).toFixed(2)+" €");
 		}
 	});
 }
 
 function saveContact(data){
-	//alert(data);
-	var obj=jQuery.parseJSON(data);
-	dbAPI.contacts.post(obj, function(success,data,err){
+	dbAPI.contacts.post(data, function(success,data,err){
 		if(success){
-			alert(obj.name+" saved");
+			showDialog("Contact Saved","The Contact was successfully saved!");
+			//alert(data.name+" saved");
 			$("#add-contact-reset").click();
 			ViewContacts.router.back();
 			loadContacts();
@@ -175,12 +206,22 @@ function saveContact(data){
 	});
 }
 
-function loadCashAccount(){
-	dbAPI.cashAccounts.getAll(function(success, data, error){
+function sendTransaction(data){
+	dbAPI.cashAccounts.makeTransaction($(".current-account-id").text(),data,function(success, data, error){
 		if(success){
-			$(".current-account-name").text(data.items[0].nameOfAccount);
-			$(".current-account-balance").text((data.items[0].balance).toFixed(2)+" €");
-			//alert(data.items[0].nameOfAccount+(data.items[0].balance).toFixed(2));
+			showDialog("Transaction Sent","Your Transfer was successfully submitted!");
+			//alert("Transaction completed");
+			ViewContacts.router.back();
+			loadContacts();
+			loadCashAccount();
 		}
 	});
+}
+
+function showDialog(header, content, btn){
+	btn = btn || "OK";
+	$(".overlay .dialog-header").text(header);	
+	$(".overlay .dialog-content span").text(content);	
+	$(".overlay .button").text(btn);	
+	$(".overlay").show();
 }

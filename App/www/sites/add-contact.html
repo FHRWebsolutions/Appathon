@@ -49,7 +49,7 @@
                             <div class="content-block inset">
                                 <div class="content-block-inner share-screen add-contact">
                                     <div class="input-label">Name:</div>
-                                    <div class="add-contact-input"><input type="text" id="contact-name" value="{{name}}"></div>
+                                    <div class="add-contact-input"><input type="text" id="contact-name" value="{{name}}" data-noreset="{{noreset}}"></div>
                                     <div class="input-label">IBAN:</div>
                                     <div class="add-contact-input"><input type="text" id="contact-iban" value="{{iban}}"></div>
                                     <div class="input-label">BIC:</div>
@@ -62,10 +62,10 @@
                             <div class="content-block inset">
                                 <div class="content-block-inner">
                                 	<div class="row">
-                                        <div class="col-50">
+                                        <div class="col-50 resetbtn">
                                             <a id="add-contact-reset" href="#" class="button button-big">Reset</a>
                                         </div>
-                                        <div class="col-50">
+                                        <div class="col-50 savebtn">
                                             <a id="add-contact-save" href="#" class="button button-big active">Save</a>
                                         </div>
                                     </div>

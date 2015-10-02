@@ -21,7 +21,16 @@
         <link rel="stylesheet" href="css/my-app.css">
     </head>
   	<body>
-        <div class="statusbar-overlay"></div>       
+        <div class="statusbar-overlay"></div>  
+        <div class="overlay">
+        	<div class="dialog">
+            	<span class="dialog-header"></span>
+            	<div class="dialog-content">
+                	<span></span>
+                	<a id="dialog-close" class="button active"></a>
+                </div>
+            </div>
+        </div>     
         
         <div class="views tabs">
             
@@ -31,13 +40,14 @@
                     <div class="navbar-inner">
                         <div class="left"><a id="clear-data" href="#" class="link icon-only"><i style="color:#193296;" class="icon ion-bug"></i></a></div>
                         <div class="center sliding">Contacts</div>
-                        <div class="right"><a href="sites/add-contact.html" class="link icon-only"><i class="icon ion-ios-plus-empty"></i></a></div>
+                        <div class="right"><a href="sites/add-contact.html" data-context='{"noreset":"1"}' class="link icon-only"><i class="icon ion-ios-plus-empty"></i></a></div>
                     </div>
                 </div>
                 <div class="pages navbar-through toolbar-through">
                     <div data-page="contacts" class="page page-contacts">
                         <div class="current-account">
                         	<div>
+                                <span class="current-account-id"></span>
                                 <span class="current-account-name"></span>
                                 <span class="current-account-balance"></span>
                             </div>
@@ -137,7 +147,7 @@
                                     <label>IBAN:</label><span id="contact-iban">DE88700700240823300900</span>
                                     <label>BIC</label><span id="contact-bic">DEUTDEDBMUC</span>
                                     <label>E-Mail</label><span id="contact-email">fritz@ahorn.com</span>
-                                	<a href="#" class="button share-with-button active" onclick="window.plugins.socialsharing.share('DE000000000000000')">Share via ...</a>
+                                	<a href="#" class="button share-with-button active" onclick="window.plugins.socialsharing.share('Fritz Ahorn, IBAN:DE88700700240823300900, BIC:DEUTDEDBMUC, E-Mail:fritz@ahorn.com')">Share via ...</a>
                                 	<img src="img/own-qr-code.png" alt="QR Code">
                                 </div>
                             </div>
